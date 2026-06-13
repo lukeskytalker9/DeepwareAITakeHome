@@ -1,11 +1,30 @@
-# Craft 2 Storage (https://craftcms.com/support/craft-storage-gitignore)
-# not necessary for Craft 3 (https://github.com/craftcms/craft/issues/26)
-/craft/storage/*
-!/craft/storage/rebrand
-
+# Python virtual environments
+venv/
 .venv/
+env/
+
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
 
-.episodes/
+# Build output
 *.out
+*.o
+*.a
+
+# Dataset / episodes (large data folders)
+data/
+dataset/
+episodes/
+
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+*.key
