@@ -14,6 +14,7 @@ The C++ code is well documented around the main functions so someone could follo
 I don't own the hardware needed to complete this step, but I did take all the steps I could. I updated and opened
 my VM to run Ubuntu on windows where I was able to run the commands listed on the website to install the library.
 Eventually, I had to run the command "open-can-cli can_configure" where I received the error screenshotted and shown in file T1CanConfig.png in this directory.
+![T1CanConfig.png](T1CanConfig.png)
 
 ## Task 2 ##
 For this task I **simulated** the output from the arms in the form of a vector of ArmStates which in turn are a list of inviiduatl joint structs what hold
@@ -24,10 +25,10 @@ I chose to write this in C++ because this is a typical language for lower-level 
 I made ZEN
 
 ## Task 3 ##
-When handling data at varying timestamps that have different frequencies of recording, two main methods are used: interpolation and nearest neighbor. I went with nearest neighbor because it was the easier/more practical for the scope of this demo. Nearest neighbors has the user determining a starting time for all the components(when action 0 happened) and determining a data recording timestep. I chose a timestep that was the period of the slowest recording type, 5ms. With these pieces, you can make a list of times, and among all cameras and joints we determine which data point happened closest to that time happening. This can be done in O(n) time.
+When handling data at varying timestamps that have different frequencies of recording, two main methods are used: interpolation and nearest neighbor. I went with nearest neighbor because it was the easier/more practical for the scope of this demo. Nearest neighbors has the user determining a starting time for all the components(when action 0 happened) and determining a data recording timestep. I chose a timestep that was the period of the slowest recording type, 5ms. With these pieces, you can make a list of times, and among all cameras and joints, we determine which data point happened closest to that time. This can be done in O(n) time.
 
 
-Implementation: I used a function(nearestNeighbor) that takes in Timestampable classes (structs/classes that have a timestamp) and iterates through the vectors and aligns. Then all of the data sources were trimmed to the size of the shortest vector. This creates 5 camera vectors and a joints vector, all with the same length with indices that match identical timesteps.
+Implementation: I used a function(nearestNeighbor) that takes in Timestampable classes (structs/classes that have a timestamp) and iterates through the vectors and aligns. Then all of the data sources were trimmed to the size of the shortest vector. This creates 5 camera vectors and a joints vector, all with the same length, with indices that match identical timesteps.
 
 
 
