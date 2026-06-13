@@ -45,7 +45,7 @@ actually be but was procticle given my already fake data.
     To get working, please run 
         uvicorn RestAPI:app --reload
 
-
+q
 ## Task 5 ##
 This was also done in fast API but was done external to the other parts due to the start and stop feature being against how
 I have programmed the previous parts. This whole last step would flow better if I had a live feed of data (this is my mistake/misinterpretation).
