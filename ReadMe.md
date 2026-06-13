@@ -22,7 +22,7 @@ their pos, vel, and torque data. This vector is housed in the OpenArmSim class, 
 
 I chose to write this in C++ because this is a typical language for lower-level operations in robotics. Suggested on website as well.
 
-I made ZEN
+I made ZEN sterio two separate cameras to make my intension with the ZEN sterio explicit without knowing how it is best interacted with.
 
 ## Task 3 ##
 When handling data at varying timestamps that have different frequencies of recording, two main methods are used: interpolation and nearest neighbor. I went with nearest neighbor because it was the easier/more practical for the scope of this demo. Nearest neighbors has the user determining a starting time for all the components(when action 0 happened) and determining a data recording timestep. I chose a timestep that was the period of the slowest recording type, 5ms. With these pieces, you can make a list of times, and among all cameras and joints, we determine which data point happened closest to that time. This can be done in O(n) time.
