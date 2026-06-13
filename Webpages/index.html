@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenArm Dashboard</title>
+</head>
+
+<body>
+
+<h1>OpenArm Dashboard</h1>
+
+<h2>Recording Status</h2>
+<p id="recording">Loading...</p>
+
+<button onclick="startRecording()">Start Recording</button>
+<button onclick="stopRecording()">Stop Recording</button>
+
+<hr>
+
+<h2>Episode Count</h2>
+<p id="episodes">Loading...</p>
+
+<hr>
+
+<h2>Joint States</h2>
+<pre id="joints">Loading...</pre>
+
+<hr>
+
+<h2>Camera Preview</h2>
+
+<img
+    id="camera"
+    src="https://placehold.co/640x480"
+    width="400"
+/>
+
+<script>
+    let isImage = true;
+
+    async function updateDashboard()
+    {
+        let state =
+            await fetch('/state')
+                .then(r => r.json());
+
+        document.getElementById('joints').innerText =
+            JSON.stringify(
+                state.joints,
+                null,
+                2
+            );
+
+        document.getElementById('recording').innerText =
+            state.recording;
+
+        let episodes =
+            await fetch('/episodes')
+                .then(r => r.json());
+
+        document.getElementById('episodes').innerText =
+            episodes.count;
+
+
+        if (isImageTrue) {
+            document.getElementById('camera').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaNmA_fPrzCMdCPzYxhBNaMEke5ChsCAOdzg&s";
+        } else {
+            document.getElementById('camera').src = "https://placehold.co/640x480";
+        }
+        isImageTrue = !isImageTrue;
+
+    }
+
+    async function startRecording()
+    {
+        await fetch('/start', {
+            method: 'POST'
+        });
+
+        updateDashboard();
+    }
+
+    async function stopRecording()
+    {
+        await fetch('/stop', {
+            method: 'POST'
+        });
+
+        updateDashboard();
+    }
+
+    updateDashboard();
+    
+    setInterval(
+        updateDashboard,
+        1000
+    );
+
+</script>
+
+</body>
+</html>

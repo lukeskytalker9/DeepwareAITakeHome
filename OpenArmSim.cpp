@@ -31,7 +31,7 @@ struct Joint{
 };
 
 struct Timestampable{
-     //uint64_t instead of unsigned long to keep consistency across
+    //uint64_t instead of unsigned long to keep consistency across
     //systems
     uint64_t timestamp;
 };
@@ -325,6 +325,7 @@ class DataStorage{
 int main(){
     cout << "Starting Program"<< endl;
 
+    // Task 2 (Simulate then test if it actually worked)
     OpenArmSim joints;
     joints.simRecordData();
     vector<ArmState> stateData= joints.getStates();
