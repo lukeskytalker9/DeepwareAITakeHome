@@ -4,6 +4,8 @@
 !/craft/storage/rebrand
 
 .venv/
-.__pycache__/
-./episodes
+__pycache__/
+*.pyc
+
+.episodes/
 *.out
